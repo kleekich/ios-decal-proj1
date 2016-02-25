@@ -39,16 +39,11 @@ class TaskTableViewController: UITableViewController {
         print(taskMgr.tasks)
         tblTasks.reloadData();
     }
-    
-    //UITableView Delete complete
+
+    //UITableView Delete
     override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath){
         if(editingStyle == UITableViewCellEditingStyle.Delete){
             taskMgr.tasks.removeAtIndex(indexPath.row)
-            tblTasks.reloadData()
-        }
-        if(editingStyle == UITableViewCellEditingStyle.Insert){
-            taskMgr.deleteTask(indexPath.row)
-            taskMgr.completeTask(indexPath.row)
             tblTasks.reloadData()
         }
     }
@@ -87,6 +82,9 @@ class TaskTableViewController: UITableViewController {
         var myDateFormatter : NSDateFormatter = NSDateFormatter()
         myDateFormatter.dateStyle = NSDateFormatterStyle.MediumStyle
         selectedCell.detailTextLabel!.text = myDateFormatter.stringFromDate(myDate)
+        
+        //change data
+        taskMgr.completeTask(indexPath.row)
 
     }
     

@@ -30,7 +30,7 @@ class AddTaskViewController: UIViewController, UITextFieldDelegate{
     //Events
     @IBAction func btnSaveTask_Clicked(sender: UIBarButtonItem){
         print("save btn clicked")
-        taskMgr.addTask(txtTask.text!, desc: txtDesc.text!)
+        taskMgr.addTask(txtTask.text!, desc: txtDesc.text!, createdAt: NSDate(), completedAt: nil)
         self.view.endEditing(true)
         txtTask.text = ""
         txtDesc.text = ""
