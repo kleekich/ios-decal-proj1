@@ -34,8 +34,8 @@ class AddTaskViewController: UIViewController, UITextFieldDelegate{
         self.view.endEditing(true)
         txtTask.text = ""
         txtDesc.text = ""
-        self.navigationController!.popToRootViewControllerAnimated(true)
         
+        self.navigationController!.popToRootViewControllerAnimated(true)
         
     }
     

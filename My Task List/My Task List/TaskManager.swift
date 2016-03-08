@@ -35,9 +35,10 @@ class TaskManager: NSObject {
         print("Completed a task!")
         tasks[taskCompleted].completedAt = NSDate()
         tasksCompleted.append(tasks[taskCompleted]);
-      
         
     }
+    
+    
     
     
 }

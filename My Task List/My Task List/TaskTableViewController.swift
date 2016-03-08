@@ -63,8 +63,10 @@ class TaskTableViewController: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell{
+        //let cell = tableView.dequeueReusableCellWithIdentifier("ToDoCell", forIndexPath: indexPath)
         
-        let cell: UITableViewCell = UITableViewCell(style: UITableViewCellStyle.Subtitle , reuseIdentifier: "test")
+        
+        let cell: UITableViewCell = UITableViewCell(style: UITableViewCellStyle.Subtitle , reuseIdentifier: "ToDoCell")
         cell.textLabel!.text = taskMgr.tasks[indexPath.row].name
         cell.detailTextLabel!.text = taskMgr.tasks[indexPath.row].desc
 
@@ -86,6 +88,16 @@ class TaskTableViewController: UITableViewController {
         //change data
         taskMgr.completeTask(indexPath.row)
 
+    }
+    
+    @IBAction func unwindToTaskTableView(segue: UIStoryboardSegue) {
+        
+        
+    }
+    
+    @IBAction func addTaskToTableView(segue: UIStoryboardSegue) {
+        
+        
     }
     
 
