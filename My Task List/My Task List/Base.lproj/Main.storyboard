@@ -56,7 +56,7 @@
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="save" id="uke-YF-9C6">
                             <connections>
-                                <action selector="btnSaveTask_Clicked:" destination="h1c-bg-hqz" id="wIN-gx-Zy7"/>
+                                <segue destination="ZhL-qz-O9H" kind="unwind" unwindAction="unwindToTaskTableView:" id="ZhG-5L-yj5"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -114,7 +114,7 @@
         <scene sceneID="dPD-dV-D4N">
             <objects>
                 <navigationController id="7Vj-Ar-qHU" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Tasks" id="ZnJ-1c-xaQ"/>
+                    <tabBarItem key="tabBarItem" title="Tasks" image="first" id="ZnJ-1c-xaQ"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="mqD-Eq-Xbj">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -145,12 +145,6 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="-1000" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tMf-OH-Lks">
-                                <rect key="frame" x="34" y="212" width="150" height="66"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Tasks" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NMi-AU-fWC">
                                 <rect key="frame" x="114" y="234" width="44" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -164,6 +158,18 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tMf-OH-Lks">
+                                <rect key="frame" x="34" y="212" width="150" height="66"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" restorationIdentifier="numTasks" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="azd-Qa-vlI">
+                                <rect key="frame" x="47" y="234" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
@@ -173,6 +179,9 @@
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Statistics" image="second" id="cPa-gy-q4n"/>
+                    <connections>
+                        <outlet property="txtNumCompletedTasks" destination="azd-Qa-vlI" id="pS0-GS-8Vz"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Nw-L8-lE0" sceneMemberID="firstResponder"/>
             </objects>
@@ -217,6 +226,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="first" width="30" height="30"/>
         <image name="second" width="30" height="30"/>
     </resources>
 </document>

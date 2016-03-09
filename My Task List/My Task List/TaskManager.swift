@@ -13,7 +13,7 @@ var taskMgr: TaskManager = TaskManager()
 struct task{
     var name = "Un-named"
     var desc = "Un-Described"
-    var createdAt: NSDate
+    var createdAt: NSDate?
     var completedAt: NSDate?
 }
 
@@ -34,10 +34,22 @@ class TaskManager: NSObject {
     func completeTask(taskCompleted: Int!){
         print("Completed a task!")
         tasks[taskCompleted].completedAt = NSDate()
-        tasksCompleted.append(tasks[taskCompleted]);
+        tasksCompleted.append(tasks[taskCompleted])
         
     }
     
+    func countCompletedTasks() -> Int{
+        let currentTime: NSDate = NSDate()
+        var timeInterval: Double = 0.0
+        var count = 0
+        for task in tasksCompleted{
+            timeInterval = currentTime.timeIntervalSinceDate(task.createdAt!);
+            if timeInterval<86400{
+                count++
+            }
+        }
+        return count;
+    }
     
     
     

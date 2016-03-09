@@ -13,6 +13,7 @@ import UIKit
 class AddTaskViewController: UIViewController, UITextFieldDelegate{
     
     
+    
     @IBOutlet var txtTask: UITextField!
     @IBOutlet var txtDesc: UITextField!
     @IBOutlet var saveBtn: UIBarButtonItem!
@@ -34,9 +35,18 @@ class AddTaskViewController: UIViewController, UITextFieldDelegate{
         self.view.endEditing(true)
         txtTask.text = ""
         txtDesc.text = ""
+       
+       
         
-        self.navigationController!.popToRootViewControllerAnimated(true)
-        
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if sender === saveBtn{
+            print("save Item!!!")
+            taskMgr.addTask(txtTask.text!, desc: txtDesc.text!, createdAt: NSDate(), completedAt: nil)
+            //var task = task(txtTask.text!,txtDesc.text!, NSDate(), nil)
+            
+        }
     }
     
     //IOS Touch Functions

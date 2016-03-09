@@ -10,6 +10,7 @@ import UIKit
 
 class TaskTableViewController: UITableViewController {
     @IBOutlet var tblTasks: UITableView!
+    var newTask: task = task(name:"",desc:"",createdAt:nil,completedAt: nil)
     
     let lightOrange : UIColor = UIColor(red: 0.99, green: 0.467, blue: 0.224, alpha: 1)
     
@@ -23,7 +24,11 @@ class TaskTableViewController: UITableViewController {
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
-
+    
+    override func viewDidAppear(animated: Bool) {
+        tblTasks.reloadData();
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -37,7 +42,7 @@ class TaskTableViewController: UITableViewController {
         
         print("RELOAD!")
         print(taskMgr.tasks)
-        tblTasks.reloadData();
+        //tblTasks.reloadData();
     }
 
     //UITableView Delete
@@ -67,6 +72,18 @@ class TaskTableViewController: UITableViewController {
         
         
         let cell: UITableViewCell = UITableViewCell(style: UITableViewCellStyle.Subtitle , reuseIdentifier: "ToDoCell")
+        let currTask = taskMgr.tasks[indexPath.row]
+        if((currTask.completedAt) != nil){
+            cell.detailTextLabel!.textColor = UIColor.whiteColor()
+            cell.contentView.backgroundColor = lightOrange
+            cell.accessoryType = UITableViewCellAccessoryType.Checkmark
+            let myDateFormatter : NSDateFormatter = NSDateFormatter()
+            myDateFormatter.dateStyle = NSDateFormatterStyle.MediumStyle
+            cell.textLabel!.text = currTask.name
+            cell.detailTextLabel!.text = myDateFormatter.stringFromDate(currTask.completedAt!)
+            
+            return cell
+        }
         cell.textLabel!.text = taskMgr.tasks[indexPath.row].name
         cell.detailTextLabel!.text = taskMgr.tasks[indexPath.row].desc
 
@@ -81,24 +98,33 @@ class TaskTableViewController: UITableViewController {
         
         //setup detail view
         let myDate : NSDate = NSDate()
-        var myDateFormatter : NSDateFormatter = NSDateFormatter()
+        let myDateFormatter : NSDateFormatter = NSDateFormatter()
         myDateFormatter.dateStyle = NSDateFormatterStyle.MediumStyle
         selectedCell.detailTextLabel!.text = myDateFormatter.stringFromDate(myDate)
         
         //change data
-        taskMgr.completeTask(indexPath.row)
+        //if(taskMgr.tasks[indexPath.row].completedAt == nil){
+            taskMgr.completeTask(indexPath.row)
+        //}
 
     }
     
     @IBAction func unwindToTaskTableView(segue: UIStoryboardSegue) {
+        if segue.identifier == "save" {
+        }
         
+        if let avc = segue.sourceViewController as? AddTaskViewController {
+            taskMgr.addTask(avc.txtTask.text!, desc: avc.txtDesc.text!, createdAt: NSDate(), completedAt: nil)
+            
+        }
         
     }
-    
+    /*
     @IBAction func addTaskToTableView(segue: UIStoryboardSegue) {
-        
-        
-    }
+    tblTasks.reloadData();
     
+    }
+    */
+
 
 }
